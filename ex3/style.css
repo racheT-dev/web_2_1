@@ -19,7 +19,7 @@ body {
 
 h2 {
     text-align: center;
-    color: #ecf0f1;
+    color: #2c3e50;
     margin-bottom: 20px;
     margin-top: 0;
 }
@@ -30,7 +30,7 @@ form {
 }
 
 label {
-    color: #ecf0f1;
+    color: #2c3e50;
     margin-bottom: 5px;
     display: inline-block;
 }
