@@ -1,12 +1,14 @@
+/* Основные стили страницы */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #3498db, #2ecc71);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
+
 
 .form-container {
     border: 2px solid #2ecc72;
@@ -46,10 +48,16 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="date"], 
     font-size: 14px;
 }
 
-select {
+select[multiple] {
+    height: auto;
+    min-height: 120px;
     padding: 5px;
 }
 
+select[multiple] option {
+    padding: 8px;
+    margin: 2px 0;
+}
 textarea {
     resize: vertical;
 }
@@ -59,13 +67,16 @@ input[type="checkbox"] {
 }
 
 button {
-    background-color: #2ecc71;
+    background-color: #3498db;
     color: white;
+    padding: 12px 20px;
     border: none;
-    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s;
 }
 
 button:hover {
