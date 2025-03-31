@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Регистрационная форма</h2>
+        <form action="main.cgi" method="post">
+            <label for="fio">ФИО:</label>
+            <input type="text" id="fio" name="fio" placeholder="Введите ФИО" required>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Введите телефон" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Введите e-mail" required>
+
+            <label for="birthdate">Дата рождения:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+
+            <div class="gender">
+                <label>Пол:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Мужской</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Женский</label>
+            </div>
+
+            <label>Любимый язык программирования:</label>
+            <select multiple id="langs" name="langs[]" required>
+                <option value="pascal">Pascal</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+                <option value="javascript">JavaScript</option>
+                <option value="php">PHP</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="haskell">Haskell</option>
+                <option value="clojure">Clojure</option>
+                <option value="prolog">Prolog</option>
+                <option value="scala">Scala</option>
+                <option value="go">Go</option>
+            </select>
+
+            <label for="bio">Биография:</label>
+            <textarea id="bio" name="bio" rows="4" placeholder="Введите вашу биографию" required></textarea>
+
+            <label>
+                <input type="checkbox" id="agreement" name="agreement" required>
+                С контрактом ознакомлен (а)
+            </label>
+
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+
+    {{ if . }}
+    <div class="message">
+        {{ range . }}
+            {{ if eq . "Данные успешно сохранены" }}
+        <div class="success"> {{ . }} </div>
+            {{ else }}
+        <div class="fail"> {{ . }} </div>
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ end }}
+</body>
+</html>
