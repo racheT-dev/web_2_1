@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Добро пожаловать!</h2>
+        <form action="main.cgi?action=form&id={{ .ID }}" method="post">
+            <label for="fio">ФИО:</label>
+            <input type="text" id="fio" name="fio" placeholder="Введите ФИО" {{ $fio := .Application.Fio }} {{ if $fio }} value="{{ $fio }}" {{ end }}>
+            <p class="warning warning_red">{{ $fioErr := .Errors.Fio }}{{ if $fioErr }}{{ $fioErr }}{{ end }}</p>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Введите телефон" {{ $phone := .Application.Phone }} {{ if $phone }} value="{{ $phone }}" {{ end }}>
+            <p class="warning warning_red">{{ $phoneErr := .Errors.Phone }}{{ if $phoneErr }}{{ $phoneErr }}{{ end }}</p>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Введите e-mail" {{ $email := .Application.Email }} {{ if $email }} value="{{ $email }}" {{ end }}>
+            <p class="warning warning_red">{{ $emailErr := .Errors.Email }}{{ if $emailErr }}{{ $emailErr }}{{ end }}</p>
+
+            <label for="birthdate">Дата рождения:</label>
+            <input type="date" id="birthdate" name="birthdate" value="{{ .Application.Birthdate }}">
+            <p class="warning warning_red">
+            {{ $birthdateErr := .Errors.Birthdate }}
+            {{ if $birthdateErr }}
+                {{ $birthdateErr }}
+            {{ end }}
+            </p>
+
+            <div class="gender">
+                <label>Пол:</label>
+                <input type="radio" id="male" name="gender" value="male" {{ if eq .Application.Gender "male" }} checked {{ end }}">
+                <label for="male">Мужской</label>
+                <input type="radio" id="female" name="gender" value="female" {{ if eq .Application.Gender "female" }} checked {{ end }}>
+                <label for="female">Женский</label>
+            </div>
+            <p class="warning warning_red">
+            {{ $genderErr := .Errors.Gender }}
+            {{ if $genderErr }}
+                {{ $genderErr }}
+            {{ end }}
+            </p>
+
+            <label>Любимый язык программирования:</label>
+            <select multiple id="langs" name="langs[]" size="6">
+                <option value="pascal" {{ if .Contains "pascal" }} selected {{ end }}>Pascal</option>
+                <option value="c" {{ if .Contains "c" }} selected {{ end }}>C</option>
+                <option value="cpp" {{ if .Contains "cpp" }} selected {{ end }}>C++</option>
+                <option value="javascript" {{ if .Contains "javascript" }} selected {{ end }}>JavaScript</option>
+                <option value="php" {{ if .Contains "php" }} selected {{ end }}>PHP</option>
+                <option value="python" {{ if .Contains "python" }} selected {{ end }}>Python</option>
+                <option value="java" {{ if .Contains "java" }} selected {{ end }}>Java</option>
+                <option value="haskell" {{ if .Contains "haskell" }} selected {{ end }}>Haskell</option>
+                <option value="clojure" {{ if .Contains "clojure" }} selected {{ end }}>Clojure</option>
+                <option value="prolog" {{ if .Contains "prolog" }} selected {{ end }}>Prolog</option>
+                <option value="scala" {{ if .Contains "scala" }} selected {{ end }}>Scala</option>
+                <option value="go" {{ if .Contains "go" }} selected {{ end }}>Go</option>
+            </select>
+            <p class="warning warning_red">
+            {{ $langsErr := .Errors.Langs }}
+            {{ if $langsErr }}{{ $langsErr }}{{ end }}
+            </p>
+
+            <label for="bio">Биография:</label>
+            <textarea id="bio" name="bio" rows="4" placeholder="Введите вашу биографию">{{ $bio := .Application.Bio }}{{ if $bio }}{{ $bio }}{{ end }}</textarea>
+            <p class="warning warning_red">{{ $bioErr := .Errors.Bio }}{{ if $bioErr }}{{ $bioErr }}{{ end }}</p>
+
+            <label>
+                <input type="checkbox" id="agreement" name="agreement" required>
+                С контрактом ознакомлен (а)
+            </label>
+
+            <button type="submit">Сохранить</button>
+        </form>
+
+        <div class="message">
+        {{ $message := .Message }}
+        {{ if $message }}
+            <div class="success">{{ $message }}</div>
+        {{ end }}
+        </div>
+    </div>
+</body>
+</html>
